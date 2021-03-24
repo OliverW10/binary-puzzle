@@ -60,6 +60,13 @@ def checkBoard(board):
 			if vert == threes[0] or vert == threes[1]:
 				return False
 
+	# # checks to see if all the rows and unique
+	if len(np.unique(board, axis=0)) != size:
+		return False
+	# # checks to see if all the columns are unique
+	if len(np.unique(board, axis=1)) != size:
+		return False
+
 	return True
 
 def findEmpty(board):
@@ -69,11 +76,11 @@ def findEmpty(board):
 		return False
 	return (allPos[0][0], allPos[1][0])
 
-def branch(board):
-
+def branch(board, callback = lambda *x:x):
+	callback(board)
 	# checks if we filled every square, meaning we found a solution
 	pos = findEmpty(board)
-	if pos == False:
+	if type(pos) == bool and checkBoard(board) == True:
 		return True, board
 
 	# sets the next undecided square to 0
@@ -81,7 +88,7 @@ def branch(board):
 	# checks if its valid (so far)
 	if checkBoard(board):
 		# if it is continue recursively branching down
-		out = branch(board)
+		out = branch(board, callback)
 		if out[0] == True: # found a solution in this branch
 			return True, out[1]
 
@@ -90,7 +97,7 @@ def branch(board):
 	# checks if its valid (so far)
 	if checkBoard(board):
 		# if it is continue recursively branching down
-		out = branch(board)
+		out = branch(board, callback)
 		if out[0] == True: # found a solution in this branch
 			return True, out[1]
 
@@ -98,10 +105,10 @@ def branch(board):
 	return False, [] # didnt find a solution in this branch
 
 def printBoard(board):
-	print(board)
 	for i in range(size):
 		for j in range(size):
 			print(board[i][j], end="")
 		print("")
 
-printBoard(branch(start_board)[1])
+printBoard(branch(start_board, printBoard)[1])
+	
