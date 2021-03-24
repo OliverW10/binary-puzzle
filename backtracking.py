@@ -1,5 +1,6 @@
 import math
 import numpy as np
+import time
 
 test1 = np.array(
 	[[1, 0, 0, 1, 1, 0],
@@ -107,8 +108,13 @@ def branch(board, callback = lambda *x:x):
 def printBoard(board):
 	for i in range(size):
 		for j in range(size):
-			print(board[i][j], end="")
+			if board[i][j] == 2:
+				print(" ", end="")
+			else:
+				print(board[i][j], end="")
 		print("")
+	print("\n\n")
+	time.sleep(0.1)
 
 printBoard(branch(start_board, printBoard)[1])
 	
