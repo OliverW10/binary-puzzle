@@ -10,14 +10,6 @@ test1 = np.array(
 	[0, 1, 1, 0, 1, 0],
 	[1, 0, 1, 0, 0, 1]])
 
-test2 = np.array(
-	[[1, 0, 0, 1, 1, 0],
-	[0, 1, 1, 0, 0, 1],
-	[0, 1, 0, 1, 1, 0],
-	[1, 0, 0, 1, 1, 0],
-	[0, 1, 1, 0, 1, 0],
-	[1, 0, 1, 0, 0, 1]])
-
 size = 6
 
 # define starting configuration here
@@ -31,35 +23,28 @@ start_board[5, 3] = 1
 start_board[1, 4] = 1
 start_board[3, 5] = 0
 start_board[4, 5] = 0
-# start_board[5, 5] = 0
 
 threes = [[1, 1, 1], [0, 0, 0]]
 
-placements = []
 def checkBoard(board):
 	# check number per row
 	for i in range(size):
 		row = board[i]
-		if len([x for x in row if x == 0]) > 3 or len([x for x in row if x == 1]) > 3:
-			return False
-
 		col = np.rot90(board)[i]
-		if len([x for x in col if x == 0]) > 3 or len([x for x in col if x == 1]) > 3:
-			return False
+
+		for line in [row, col]:
+			if len([x for x in line if x == 0]) > 3 or len([x for x in line if x == 1]) > 3:
+				return False
 
 	# check threes in a rows		
 	for i in range(1, size-1):
 		for j in range(size):
 			horz = [board[i-1][j], board[i][j], board[i+1][j]]
-			if horz == threes[0] or horz == threes[1]:
-				return False
+			vert = [board[j][i-1], board[j][i], board[j][i+1]]
 
-	# check threes in cols
-	for i in range(size):
-		for j in range(1, size-1):
-			vert = [board[i][j-1], board[i][j], board[i][j+1]]
-			if vert == threes[0] or vert == threes[1]:
-				return False
+			for line in [horz, vert]:
+				if line == threes[0] or line == threes[1]:
+					return False
 
 	# # checks to see if all the rows and unique
 	if len(np.unique(board, axis=0)) != size:
@@ -68,6 +53,7 @@ def checkBoard(board):
 	if len(np.unique(board, axis=1)) != size:
 		return False
 
+	# none of the checks failed
 	return True
 
 def findEmpty(board):
@@ -116,5 +102,5 @@ def printBoard(board):
 	print("\n\n")
 	time.sleep(0.1)
 
-printBoard(branch(start_board, printBoard)[1])
-	
+if __name__ == "__main__":
+	printBoard(branch(start_board, printBoard)[1])
