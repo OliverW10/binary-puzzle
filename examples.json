@@ -1,0 +1,30 @@
+{"puzzles":[
+	"xxxxxx\nx1xxx1\nx1x1xx\nxx0xx1\nx1xxxx\nxxx00x",
+	"x1xxxx\nxxx0x0\nx0x0xx\n1xxx1x\nxxxx0x\n0xxxxx",
+	"0xx1xx\nx0xxx1\nxx11xx\nxxxx11\nxxxxx0\n0x1x1x",
+	"xxxxxx\nx1x1x1\nxx00xx\n0xxxxx\nxxxx11\nxx0x0x",
+	"xxxxx0\nx1xx1x\nxxx0xx\nxx1xxx\nxx1xxx\nx0xx1x",
+	"1x1xx1\nxxx1xx\n0xx10x\nxx1xxx\nx1xxxx\n1xx11x",
+	"11xxxx\n1xx1xx\nxxxx0x\n0x0xxx\nxxxxxx\nxx0x0x",
+	"xx00x0\nxxxxxx\nx11xxx\nxxxx00\nxx1x0x\nxxxxxx",
+	"xxxxxx\nx1xxxx\nxx0x11\nxx0xxx\nx0xx1x\nxxxxxx",
+	"x1x1x1\nxxxxxx\n00xxxx\nxxxx1x\n0x10xx\nx1xxxx",
+	"0xxxxx\nx11xxx\nxx1xxx\nxxx0xx\n0xx1xx\nxxxxxx",
+	"xxx1xx\nxxxxx0\nxxxx00\nxxxx1x\n1xxxxx\nx0x0x0"
+],
+"formatTests":{
+	"aidens":"xxxxxx\nx1xxx1\nx1x1xx\nxx0xx1\nx1xxxx\nxxx00x",
+	"full":[
+			[-1, -1, -1, -1, -1, -1],
+			[-1, 1, -1, -1, -1, 1],
+			[-1, 1, -1, 1, -1, -1],
+			[-1, -1, 0, -1, -1, 1],
+			[-1, 1, -1, -1, -1, -1],
+			[-1, -1, -1, 0, 0, -1]],
+	"individual":[[1, 1, 1], [5, 1, 1], [1, 2, 1], [3, 2, 1], [2, 3, 0], [5, 3, 1], [1, 4, 1], [3, 5, 0], [4, 5, 0]]
+	},
+"extras":{
+		"14x14":"x00xx11x1x00x0\nxxxxxxxxxxx0xx\nx00xxxx11xxx1x\nx0x11x0xxx0xxx\nxxxx1xxxxxxxxx\n01xxxxxx0x11x1\nxxx0xx1xx0xxxx\nx0xxxxxxxxxxx0\nxxxx1x00x1xx00\nx11xxx00xxxx0x\n0xxxxxxxxxx1xx\nx0xxxxxxxx1xxx\n1xxxxx11x0x0x0\nx1xx0xx1xxx0x1",
+		"8x8":"xxxxxxx0\nx00xx1xx\nx0xxx1x0\nxx1xxxxx\n00x1xx1x\nxxxx1xxx\n11xxx0x1\nx1xxxxx1"
+	}
+}
