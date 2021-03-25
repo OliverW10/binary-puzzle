@@ -1,5 +1,7 @@
 import numpy as np
 import time
+import os
+import platform
 
 class BinaryPuzzle:
 	def __init__(self):
@@ -49,7 +51,7 @@ class BinaryPuzzle:
 			col = np.rot90(board)[i]
 
 			for line in [row, col]:
-				if len([x for x in line if x == 0]) > maxNum or len([x for x in line if x == 1]) > maxNum:
+				if (line==0).sum() > maxNum or (line==1).sum() > maxNum:
 					return False
 
 		# check threes in a rows
@@ -89,7 +91,12 @@ class BinaryPuzzle:
 		return (allPos[0][0], allPos[1][0])
 
 	@staticmethod
-	def printBoard(board):
+	def printBoard(board, delay=0.):
+		if delay != 0:
+			if platform.system() == "Linux" or platform.system() == "Darwin":
+				os.system(r"clear && printf '\e[3J'")
+			else:
+				os.system("cls")
 		for row in board:
 			for num in row:
 				if num == -1:
@@ -98,7 +105,7 @@ class BinaryPuzzle:
 					print(num, end="")
 			print("")
 		print("\n\n")
-		time.sleep(0.05)
+		time.sleep(delay)
 
 	def branch(self, board, callback):
 		callback(board)
